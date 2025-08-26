@@ -171,7 +171,7 @@
     <p class="section-sub">Kein Notfall? Schreiben Sie uns – wir melden uns zeitnah.</p>    
     
     <div class="card" aria-label="Kontaktformular">
-      <form aria-describedby="kontakt-hinweis">
+      <form id="contactForm" aria-describedby="kontakt-hinweis">
         <div class="form-row">
           <label>
             <span class="tiny">Ihr Name*</span>
@@ -190,6 +190,7 @@
           <span class="tiny">Nachricht*</span>
           <textarea name="nachricht" required></textarea>
         </label>
+        <input type="text" name="honeypot" id="honeyspot" style="display:none;">
         <button class="btn" type="submit" aria-label="Nachricht senden">Senden</button>
       </form>
     </div>
@@ -631,6 +632,45 @@
   <script>
     // Jahreszahl automatisch
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Kontaktformular mit formbee.dev-->
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async (ev) => {
+      if (document.getElementById('honeyspot').value) {
+        /* Preventing default in an HTML form will prevent the form from submitting.*/
+        ev.preventDefault();
+        console.log('Honeypot filled out');
+      } else {
+
+        const formData = new FormData(ev.target);
+        
+        // Adding all form data to an object
+        const formObject = {};
+        formData.forEach((value, key) => {
+          formObject[key] = value;
+        });
+
+        try {
+          const response = await fetch('https://api.formbee.dev/formbee/10ceba0d-a920-448e-8de1-686bfd1c576e', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formObject)
+          });
+
+          if (response.ok) {
+            alert('Form submitted successfully');
+          } else {
+            alert('Form submission failed');
+          }
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          alert('Error submitting form.');
+        }
+      }
+    });
   </script>
 </body>
 </html>
