@@ -14,7 +14,11 @@
 }
 
 /* ========= Reset & Grundstruktur ========= */
-*{ box-sizing:border-box; }
+*{
+    box-sizing:border-box;
+    padding: 0;
+    margin: 0;
+}
 html { scroll-behavior: smooth; }
 body{
     margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
@@ -43,9 +47,10 @@ header{
 }
 nav ul{ list-style:none; display:flex; gap:22px; padding:0; margin:0; }
 nav a{
-    color: var(--muted); font-weight:600; padding:8px 12px; border-radius:10px; border:1px solid rgb(0, 0, 0); transition: .2s;
+    color: var(--muted); font-weight:600; padding:8px 12px; border-radius:10px; border:1px solid var(--muted); transition: .2s;
 }
-nav a:hover, nav a:focus{ color: var(--text); background: rgba(255,255,255,.06); outline: none; }
+nav a:focus{ color: var(--text); background: var(--brand-600); outline: none; }
+nav a:hover{ transform: translateY(-1px); box-shadow: 0 12px 26px rgba(226,27,47,.45); }
 
 /* ========= Hero ========= */
 .hero{
@@ -69,6 +74,7 @@ h1{ font-size: clamp(2.2rem, 4.2vw, 3.6rem); line-height:1.1; margin:.35em 0 .4e
     background: transparent; color: var(--text);
     border:1px solid rgb(0, 0, 0); box-shadow:none;
 }
+.btn.secondary:hover{ transform: translateY(-1px); box-shadow: 0 10px 15px rgba(226,27,47,.45); }
 .hero-card{
     background: #b6b6b8;
     border:0px solid rgba(255,255,255,.08); border-radius: var(--radius); padding:22px;
@@ -137,13 +143,19 @@ footer{
 .tiny{ font-size:.9rem; }
 
 /* ========= Responsive ========= */
+ /* super minimalist auf Mobile */
 @media (max-width: 960px){
+    .desklogosmall{ width: 100px; }
+    .desklogo{ display:none; }
     .hero{ grid-template-columns: 1fr; }
     .metrics{ grid-template-columns: repeat(3, minmax(0,1fr)); }
     .grid.cols-3{ grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px){
-    nav ul{ display:none; } /* super minimalist auf Mobile */
+    .desklogosmall{ width: 60px; }
+    .linktext{ display:none; }
+    .nav ul{ gap:4px;}
+    .nav a{ padding:4px; border:0px;}
     .grid.cols-3, .grid.cols-2{ grid-template-columns: 1fr; }
     .form-row{ grid-template-columns: 1fr; }
     .metrics{ grid-template-columns: repeat(3,1fr); }
