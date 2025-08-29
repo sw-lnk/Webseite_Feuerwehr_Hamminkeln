@@ -21,7 +21,7 @@
       </div>
       <nav aria-label="Primäre Navigation">
         <ul>
-          <!-- <li><a href="#einsatz">Einsätze</a></li> -->
+          <li><a href="#pressemitteilung">📣<span class="linktext"> Pressemitteilungen</span></a></li>
           <li><a href="#informationen">ℹ️<span class="linktext"> Informationen</span></a></li>
           <li><a href="#mitmachen">🤝<span class="linktext"> Mitmachen</span></a></li>
           <li><a href="#kontakt">☎️<span class="linktext"> Kontakt</span></a></li>
@@ -74,47 +74,11 @@
     </section>
   </main>
 
-  <!-- ======= Einsätze ======= -->
-  <!--
-  <section id="einsatz" class="container" aria-labelledby="einsatz-title">
-    <h2 class="section-title" id="einsatz-title">Aktuelle Einsätze</h2>
-    <p class="section-sub">Eine Auswahl jüngster Meldungen (Beispiele):</p>
-
-    <div class="grid cols-3">
-      <div class="card">
-        <h3>Brandnachschau – Mehrfamilienhaus</h3>
-        <p class="muted tiny">Hamminkeln, 14. Aug 2025 • 19:42 Uhr</p>
-        <div class="incident" aria-label="Einsatzdetails">
-          <span class="tag">Brand</span>
-          <span>Keine Verletzten • Nachkontrolle & Belüftung</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>VU – PKW gegen Leitplanke</h3>
-        <p class="muted tiny">Mehrhoog, 12. Aug 2025 • 07:18 Uhr</p>
-        <div class="incident">
-          <span class="tag" style="background:rgba(245,158,11,.18); color:#ffe3ad; border-color:rgba(245,158,11,.5)">TH</span>
-          <span>Absichern der Einsatzstelle • auslaufende Betriebsmittel</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>First Responder – Bewusstlose Person</h3>
-        <p class="muted tiny">Dingden, 10. Aug 2025 • 15:03 Uhr</p>
-        <div class="incident" style="border-color:rgba(45,212,191,.35); background:rgba(13,148,136,.12)">
-          <span class="tag" style="background:rgba(45,212,191,.22); color:#c7fff6; border-color:rgba(45,212,191,.45)">Med</span>
-          <span>Erstversorgung bis RD eintraf</span>
-        </div>
-      </div>
-    </div>
-
-    <div style="height:16px"></div>
-    <div class="notice" role="note" aria-live="polite">
-      🚨 Hinweis: Bei akuter Gefahr immer <strong>112</strong> wählen – nicht das Kontaktformular.
-    </div>
+  <!-- ======= Pressemitteilung ======= -->
+  <section id="pressemitteilung" class="container" aria-labelledby="meldung-title">
+    <h2 class="section-title" id="meldung-title">Aktuelle Pressemitteilung</h2>
+    <div id="ffh-news" class="grid cols-3"></div>
   </section>
-  -->
 
   <!-- ======= Bürgerinfo ======= -->
   <section id="informationen" class="container" aria-labelledby="info-title">
@@ -683,5 +647,53 @@
       }
     });
   </script>
+
+  <!-- Lese Pressemitteilungen aus dem Presseportan / News Aktuell -->
+  <script>
+    async function fetchRSS() {
+      // RSS2JSON Proxy, um Feeds in JS nutzen zu können (Alternativen: eigenes PHP-Proxy-Script)
+      const feedUrl = encodeURIComponent('https://www.presseportal.de/rss/dienststelle_165122.rss2');
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`;
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      const newsarea = document.getElementById('ffh-news');
+      let parser = new DOMParser();
+      
+      data.items.slice(0, 6).forEach(item => {
+        const card = document.createElement('articel');
+        card.className = "card";
+
+        const content = item.content;        
+        let doc = parser.parseFromString(content, 'text/html');
+        let firstImg = doc.querySelector('img');
+        let imgSrc = firstImg ? firstImg.getAttribute('src') : null;
+        
+        const feedTitle = document.createElement('h3');
+        feedTitle.textContent = item.title.replace('FW Hamminkeln: ', "");
+        card.appendChild(feedTitle);
+
+        const feedContent = document.createElement('p');
+        feedContent.className = "muted";
+        feedContent.textContent = item.description.replace('Hamminkeln (ots) - ', "");
+        card.appendChild(feedContent);
+
+        const feedLink = document.createElement('a');
+        feedLink.href = item.link;
+        feedLink.textContent = "Gesamte Mitteilung";
+        feedLink.style.color = 'blue';
+        feedLink.style.textDecoration = 'underline'
+        card.appendChild(feedLink);
+        
+        newsarea.appendChild(card);
+      });
+    }
+    fetchRSS();
+  </script>
+  <!--
+    <article class="card">
+      <h3>Rauchmelder retten Leben</h3>
+      <p class="muted">Installieren Sie in Schlafräumen und Fluren. Prüfen Sie Batterien monatlich.</p>
+    </article>
+  -->
 </body>
 </html>
