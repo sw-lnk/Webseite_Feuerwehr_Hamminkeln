@@ -21,7 +21,7 @@
       </div>
       <nav aria-label="Primäre Navigation">
         <ul>
-          <li><a href="#pressemitteilung">📣<span class="linktext"> Pressemitteilungen</span></a></li>
+          <li><a href="#neuigkeiten">📣<span class="linktext"> Neuigkeiten</span></a></li>
           <li><a href="#informationen">ℹ️<span class="linktext"> Informationen</span></a></li>
           <li><a href="#mitmachen">🤝<span class="linktext"> Mitmachen</span></a></li>
           <li><a href="#kontakt">☎️<span class="linktext"> Kontakt</span></a></li>
@@ -74,10 +74,12 @@
     </section>
   </main>
 
-  <!-- ======= Pressemitteilung ======= -->
-  <section id="pressemitteilung" class="container" aria-labelledby="meldung-title">
-    <h2 class="section-title" id="meldung-title">Aktuelle Pressemitteilung</h2>
-    <div id="ffh-news" class="grid cols-3"></div>
+  <!-- ======= Neuigkeiten ======= -->
+  <section id="neuigkeiten" class="container" aria-labelledby="meldung-title">
+    <h2 class="section-title" id="meldung-title">Neuigkeiten</h2>
+    <a class="btn secondary" href="https://www.presseportal.de/blaulicht/nr/165122" target="_blank">Presseportal</a>
+    <div style="height:18px"></div>
+    <div id="ffh-news" class="grid cols-2"></div>    
   </section>
 
   <!-- ======= Bürgerinfo ======= -->
@@ -659,7 +661,7 @@
       const newsarea = document.getElementById('ffh-news');
       let parser = new DOMParser();
       
-      data.items.slice(0, 6).forEach(item => {
+      data.items.slice(0, 4).forEach(item => {
         const card = document.createElement('articel');
         card.className = "card";
 
@@ -667,33 +669,41 @@
         let doc = parser.parseFromString(content, 'text/html');
         let firstImg = doc.querySelector('img');
         let imgSrc = firstImg ? firstImg.getAttribute('src') : null;
+
+        const feedImage = document.createElement('img');
+        feedImage.src = imgSrc;
+        feedImage.style.maxHeight = "200px";
+        feedImage.border = "0";
+        feedImage.style.borderRadius = "10px";
         
         const feedTitle = document.createElement('h3');
         feedTitle.textContent = item.title.replace('FW Hamminkeln: ', "");
-        card.appendChild(feedTitle);
+
+        const grid = document.createElement('div')
+        grid.className = 'grid cols-2';
+        grid.style.justifyItems = "center";
+        grid.style.marginTop = "8px";
 
         const feedContent = document.createElement('p');
         feedContent.className = "muted";
         feedContent.textContent = item.description.replace('Hamminkeln (ots) - ', "");
-        card.appendChild(feedContent);
-
+        
         const feedLink = document.createElement('a');
         feedLink.href = item.link;
         feedLink.textContent = "Gesamte Mitteilung";
         feedLink.style.color = 'blue';
-        feedLink.style.textDecoration = 'underline'
+        feedLink.style.textDecoration = 'underline';
+                
+        card.appendChild(feedTitle);
+        grid.appendChild(feedContent);
+        grid.appendChild(feedImage);
         card.appendChild(feedLink);
         
+        card.appendChild(grid);
         newsarea.appendChild(card);
       });
     }
     fetchRSS();
   </script>
-  <!--
-    <article class="card">
-      <h3>Rauchmelder retten Leben</h3>
-      <p class="muted">Installieren Sie in Schlafräumen und Fluren. Prüfen Sie Batterien monatlich.</p>
-    </article>
-  -->
 </body>
 </html>
