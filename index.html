@@ -21,6 +21,7 @@
       </div>
       <nav aria-label="Primäre Navigation">
         <ul>
+          <li><a href="#wetterwarnung">⚡<span class="linktext"> Unwetter</span></a></li>
           <li><a href="#neuigkeiten">📣<span class="linktext"> Neuigkeiten</span></a></li>
           <li><a href="#informationen">ℹ️<span class="linktext"> Informationen</span></a></li>
           <li><a href="#mitmachen">🤝<span class="linktext"> Mitmachen</span></a></li>
@@ -73,6 +74,33 @@
       </aside>
     </section>
   </main>
+
+  <!-- ======= Wetterwarnung ======= -->
+  <section id="wetterwarnung" class="container" aria-labelledby="wetterwarnung-title">
+    <h2 class="section-title" id="wetterwarnung-title">Unwetterwarnung</h2>
+    <div class="grid cols-3">
+      <article class="card">
+        <h3>Hinweise</h3>
+        <p class="muted">Aktuelle Übersicht von Unwetterwarnungen für Nordrhein-Westfalen und Deutschland. Weitere Details sind auf der Webseite vom Deutschen Wetterdienst (DWD) erhältlich.</p>
+        <br>
+        <p class="muted">Bitte um Beachtung der Hinweise vom Deutschen Wetterdienst zu aktuellen Wetterlage.</p>
+        <div style="height:18px"></div>
+        <a class="btn secondary" href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hamminkeln" target="_blank">⚡ DWD - Hamminkeln</a>       
+      </article>
+      <article class="card">
+        <h3>Nordrhein-Westfalen (NRW)</h3>
+        <a href="https://www.dwd.de/DE/wetter/warnungen/warnWetter_node.html?ort=Hamminkeln" class="tiny" target="_blank">
+          <img src="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_nrw.png" alt="Wetterwarnung Deutschland">
+        </a>        
+      </article>
+      <article class="card">
+        <h3>Deutschland</h3>
+        <a href="https://www.dwd.de" class="tiny" target="_blank">
+          <img src="https://www.dwd.de/DWD/warnungen/warnapp_gemeinden/json/warnungen_gemeinde_map_de.png" alt="Wetterwarnung Deutschland">
+        </a>        
+      </article>
+    </div>
+  </section>
 
   <!-- ======= Neuigkeiten ======= -->
   <section id="neuigkeiten" class="container" aria-labelledby="meldung-title">
