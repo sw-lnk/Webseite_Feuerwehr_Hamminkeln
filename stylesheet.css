@@ -47,7 +47,9 @@ header{
 }
 nav ul{ list-style:none; display:flex; gap:22px; padding:0; margin:0; }
 nav a{
-    color: var(--muted); font-weight:600; padding:8px 12px; border-radius:10px; border:1px solid var(--muted); transition: .2s;
+    color: var(--muted); font-weight:600; padding:8px 12px;
+    border-radius:10px; border:1px solid var(--muted); transition: .2s;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 nav a:focus{ color: var(--text); background: var(--brand-600); outline: none; }
 nav a:hover{ transform: translateY(-1px); box-shadow: 0 12px 26px rgba(226,27,47,.45); }
@@ -147,9 +149,6 @@ footer{
 @media (max-width: 960px){
     .desklogosmall{ width: 100px; }
     .desklogo{ display:none; }
-    .linktext{ display:none; }
-    .nav ul{ gap:4px;}
-    .nav a{ padding:4px; border:0px;}
     .hero{ grid-template-columns: 1fr; }
     .metrics{ grid-template-columns: repeat(3, minmax(0,1fr)); }
     .grid.cols-3{ grid-template-columns: 1fr 1fr; }
