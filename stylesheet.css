@@ -29,6 +29,9 @@ img{ max-width:100%; height:auto; display:block; border-radius: 10px; float: rig
 a{ color: var(--brand-600); text-decoration:none; }
 .container{ width: min(var(--container), 92vw); margin: 0 auto; }
 
+ol{ margin-left: 1em;}
+ul{ margin-left: 1em;}
+
 /* ========= Header / Navigation ========= */
 header{
     position: sticky; top:0; z-index: 1000; backdrop-filter: saturate(1.2) blur(12px);
