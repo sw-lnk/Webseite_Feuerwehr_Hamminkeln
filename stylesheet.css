@@ -25,7 +25,7 @@ body{
     color: var(--text); background: radial-gradient(1200px 800px at 85% -10%, #1b2030 0%, var(--bg) 60%);
     line-height:1.6;
 }
-img{ max-width:100%; height:auto; display:block; border-radius: 10px;}
+img{ max-width:100%; height:auto; display:block; border-radius: 10px; float: right; margin-left: 10px; margin-bottom: 10px;}
 a{ color: var(--brand-600); text-decoration:none; }
 .container{ width: min(var(--container), 92vw); margin: 0 auto; }
 
