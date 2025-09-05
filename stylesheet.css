@@ -147,6 +147,9 @@ footer{
 @media (max-width: 960px){
     .desklogosmall{ width: 100px; }
     .desklogo{ display:none; }
+    .linktext{ display:none; }
+    .nav ul{ gap:4px;}
+    .nav a{ padding:4px; border:0px;}
     .hero{ grid-template-columns: 1fr; }
     .metrics{ grid-template-columns: repeat(3, minmax(0,1fr)); }
     .grid.cols-3{ grid-template-columns: 1fr 1fr; }
