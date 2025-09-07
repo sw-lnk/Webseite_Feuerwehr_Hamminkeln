@@ -61,13 +61,17 @@ nav a:hover{ transform: translateY(-1px); box-shadow: 0 12px 26px rgba(226,27,47
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: inline-block;
 }
 
 .mobile{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: inline-block;
+    margin-bottom: -8px;
 }
+
 /* ========= Hero ========= */
 .hero{
     display:grid; align-items:center; min-height: 74vh; padding: 48px 0 28px;
