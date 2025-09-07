@@ -153,6 +153,13 @@ input, textarea{
 textarea{ min-height: 120px; resize: vertical; }
 .form-row{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
 
+.map{
+    width: 100%;
+    max-width: 400;
+    height: 300px;
+    border: 0;
+}
+
 /* Footer */
 footer{
     padding: 40px 0 64px; color: var(--muted); border-top:1px solid rgba(255,255,255,.06);
