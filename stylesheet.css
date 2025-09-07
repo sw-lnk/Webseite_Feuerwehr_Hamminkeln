@@ -80,6 +80,14 @@ ul.nav-list {
     margin-bottom: -8px;
 }
 
+.socialmedia{
+    max-height: 35px;
+    align-self: center;
+    height: auto;
+    padding: 0;
+    margin: 12px;
+}
+
 /* ========= Hero ========= */
 .hero{
     display:grid; align-items:center; min-height: 74vh; padding: 48px 0 28px;
