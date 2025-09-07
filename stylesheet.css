@@ -11,6 +11,7 @@
     --radius: 14px;
     --shadow: 0 10px 30px rgba(0,0,0,.25);
     --container: 1120px;
+    --small-width: 300px;
 }
 
 /* ========= Reset & Grundstruktur ========= */
@@ -186,6 +187,9 @@ footer{
     .grid.cols-3, .grid.cols-2{ grid-template-columns: 1fr; }
     .form-row{ grid-template-columns: 1fr; }
     .metrics{ grid-template-columns: repeat(3,1fr); }
+    .mail{ max-width: var(--small-width); }
+    .mobile{ max-width: var(--small-width); }
+    .map{ max-width: var(--small-width); }
 }
 
 /* ========= Fokus sichtbar für A11y ========= */
