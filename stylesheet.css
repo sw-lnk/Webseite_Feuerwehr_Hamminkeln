@@ -39,7 +39,7 @@ header{
     background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom: 1px solid rgba(255,255,255,.05);
 }
 .nav{
-    display:flex; align-items:center; justify-content:space-between; padding:14px 0;
+    display:flex; align-items:center; justify-content:space-between; padding:8px 0;
 }
 .brand{
     display:flex; gap:12px; align-items:center; font-weight:700; letter-spacing:.2px;
@@ -49,7 +49,8 @@ header{
     conic-gradient(from 225deg at 50% 50%, var(--brand), var(--brand-600) 40%, #86151e 80%, var(--brand));
     box-shadow: inset 0 0 0 2px rgba(255,255,255,.1), var(--shadow);
 }
-nav ul{ list-style:none; display:flex; gap:22px; padding:0; margin:0; }
+nav ul{ list-style:none; display:flex; gap:5px; padding:0; margin:0; }
+nav li{ direction: ltr;}
 nav a{
     color: var(--muted); font-weight:600; padding:8px 12px;
     border-radius:10px; border:1px solid var(--muted); transition: .2s;
@@ -57,6 +58,12 @@ nav a{
 }
 nav a:focus{ color: var(--text); background: var(--brand-600); outline: none; }
 nav a:hover{ transform: translateY(-1px); box-shadow: 0 12px 26px rgba(226,27,47,.45); }
+
+ul.nav-list {
+    list-style: none;
+    padding: 0; 
+    direction: rtl;
+}
 
 .mail{
     white-space: nowrap;
@@ -173,23 +180,28 @@ footer{
 /* ========= Responsive ========= */
  /* super minimalist auf Mobile */
 @media (max-width: 960px){
-    .desklogosmall{ width: 100px; }
-    .desklogo{ display:none; }
+    .desklogo{ width: 200; }
+    .linktext{ display:none; }
     .hero{ grid-template-columns: 1fr; }
     .metrics{ grid-template-columns: repeat(3, minmax(0,1fr)); }
     .grid.cols-3{ grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px){
-    .desklogosmall{ width: 60px; }
+    .desklogo{ display: none; }
+    .desklogosmall{ width: 80px; }
     .linktext{ display:none; }
     .nav ul{ gap:4px;}
-    .nav a{ padding:4px; border:0px;}
+    .nav a{ padding:4px; }
     .grid.cols-3, .grid.cols-2{ grid-template-columns: 1fr; }
     .form-row{ grid-template-columns: 1fr; }
     .metrics{ grid-template-columns: repeat(3,1fr); }
     .mail{ max-width: var(--small-width); }
     .mobile{ max-width: var(--small-width); }
-    .map{ max-width: var(--small-width); }
+    .map{ max-width: var(--small-width); max-height: 200px;}
+    ul.nav-list { 
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 /* ========= Fokus sichtbar für A11y ========= */
