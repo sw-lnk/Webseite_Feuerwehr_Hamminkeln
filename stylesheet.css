@@ -88,6 +88,21 @@ ul.nav-list {
     margin: 12px;
 }
 
+.homebutton {
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    max-width: 30px;
+    width: 100%;
+    font-size: 24px;
+    border-color: rgba(85, 85, 85, 0.2);
+    border-width: 0;
+    background-color: rgb(100,100,100, 0.2);
+    padding: .5px;
+    border-radius: 4px;
+}
+button a{ color: white }
+
 /* ========= Hero ========= */
 .hero{
     display:grid; align-items:center; min-height: 74vh; padding: 48px 0 28px;
