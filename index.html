@@ -340,7 +340,7 @@
           <span class="tiny">Nachricht*</span>
           <textarea name="nachricht" required></textarea>
         </label>
-        <input type="text" name="honeypot" id="honeyspot" style="display:none;">
+        <input type="text" name="usecase" id="usecase" style="display:none;">
         <button class="btn" type="submit" aria-label="Nachricht senden">Senden</button>
       </form>
     </div>
@@ -910,12 +910,13 @@
   </script>
 
   <!-- Kontaktformular mit formbee.dev-->
+  <!-- Key: 10ceba0d-a920-448e-8de1-686bfd1c576e -->
   <script>
     document.getElementById('contactForm').addEventListener('submit', async (ev) => {
-      if (document.getElementById('honeyspot').value) {
-        /* Preventing default in an HTML form will prevent the form from submitting.*/
-        ev.preventDefault();
-        console.log('Honeypot filled out');
+      ev.preventDefault();
+
+      if (document.getElementById('usecase').value) {
+         /* Hidde element filled; Spam? */
       } else {
 
         const formData = new FormData(ev.target);
@@ -924,7 +925,7 @@
         const formObject = {};
         formData.forEach((value, key) => {
           formObject[key] = value;
-        });
+        });      
 
         try {
           const response = await fetch('https://api.formbee.dev/formbee/10ceba0d-a920-448e-8de1-686bfd1c576e', {
@@ -936,13 +937,13 @@
           });
 
           if (response.ok) {
-            alert('Form submitted successfully');
+            alert('Nachricht wurde erfolgreich gesendet.');
           } else {
-            alert('Form submission failed');
+            alert('Nachricht konnte nicht gesendet werden.');
           }
         } catch (error) {
           console.error('Error submitting form:', error);
-          alert('Error submitting form.');
+          alert('Error - Kontaktformular');
         }
       }
     });
